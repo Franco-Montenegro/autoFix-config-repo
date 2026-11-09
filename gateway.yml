@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          globalcors:
+            cors-configurations:
+              '[/**]':
+                # Origenes del frontend separados por coma
+                allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}
+                allowed-methods: GET,POST,PUT,PATCH,DELETE,OPTIONS
+                allowed-headers: '*'
+                allow-credentials: true
+          routes:
+            - id: ms-vehicles
+              uri: lb://ms-vehicles
+              predicates:
+                - Path=/api/vehicles/**
+            - id: ms-repair-types
+              uri: lb://ms-repair-types
+              predicates:
+                - Path=/api/repair-types/**
+            - id: ms-repair-orders
+              uri: lb://ms-repair-orders
+              predicates:
+                - Path=/api/repair-orders/**,/api/bonuses/**,/api/history/**
+            - id: ms-reports
+              uri: lb://ms-reports
+              predicates:
+                - Path=/api/reports/**

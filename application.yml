@@ -1,0 +1,16 @@
+# Configuracion comun a todos los servicios que leen del Config Server.
+# Sin contrasenas: las credenciales llegan por variables de entorno (Secrets en Kubernetes).
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
+  instance:
+    # Con server.port=0 el puerto es aleatorio: se registra la IP del pod y un id unico por instancia
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${random.value}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
