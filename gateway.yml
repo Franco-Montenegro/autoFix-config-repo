@@ -6,6 +6,9 @@ spring:
     gateway:
       server:
         webflux:
+          # Solo se agregan los encabezados X-Forwarded-* a peticiones que llegan desde estas IPs
+          # (localhost y redes privadas: el host en local y el nodo de minikube via NodePort)
+          trusted-proxies: (127\..*|10\..*|192\.168\..*|172\.(1[6-9]|2[0-9]|3[0-1])\..*|0:0:0:0:0:0:0:1|::1)
           globalcors:
             cors-configurations:
               '[/**]':
