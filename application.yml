@@ -9,6 +9,11 @@ eureka:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${random.value}
 
+server:
+  # Detras del Gateway: usar los encabezados X-Forwarded-* para armar URLs (ej. Location),
+  # asi el cliente ve la direccion del Gateway y no la IP/puerto interno del microservicio
+  forward-headers-strategy: framework
+
 management:
   endpoints:
     web:
