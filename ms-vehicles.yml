@@ -1,5 +1,7 @@
 server:
-  port: 0
+  # Puerto aleatorio por defecto (Eureka informa el real). En Kubernetes se fija con SERVER_PORT
+  # para que el Service ClusterIP tenga un targetPort (mismo patron del ejemplo del curso).
+  port: ${SERVER_PORT:0}
 
 spring:
   datasource:

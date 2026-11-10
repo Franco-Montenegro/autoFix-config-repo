@@ -1,3 +1,5 @@
 # M4 no tiene base de datos: arma los reportes consultando a M1, M2 y M3
 server:
-  port: 0
+  # Puerto aleatorio por defecto (Eureka informa el real). En Kubernetes se fija con SERVER_PORT
+  # para que el Service ClusterIP tenga un targetPort (mismo patron del ejemplo del curso).
+  port: ${SERVER_PORT:0}
