@@ -16,4 +16,4 @@ spring:
 app:
   # Calculo de costo: IVA como fraccion (0.19 = 19%)
   cost:
-    tax-rate: ${TAX_RATE:0.19}
+    tax-rate: ${TAX_RATE:0.20}
